@@ -30,4 +30,33 @@ class AnnouncementController extends Controller
         return redirect('/announcements')
             ->with('success', 'Announcement added successfully.');
     }
+
+    public function edit($id)
+    {
+        $announcement = Announcement::findOrFail($id);
+
+        return view('announcements.edit', compact('announcement'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $announcement = Announcement::findOrFail($id);
+
+        $announcement->update([
+            'title' => $request->title,
+            'content' => $request->content,
+            'announcement_date' => $request->announcement_date,
+        ]);
+
+        return redirect('/announcements')
+            ->with('success', 'Announcement updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        Announcement::findOrFail($id)->delete();
+
+        return redirect('/announcements')
+            ->with('success', 'Announcement deleted successfully.');
+    }
 }

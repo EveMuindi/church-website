@@ -32,23 +32,43 @@
 
         <table>
 
-            <tr>
-                <th>Title</th>
-                <th>Date</th>
-                <th>Content</th>
-            </tr>
+    <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Content</th>
+        <th>Actions</th>
+    </tr>
 
-            @foreach($announcements as $announcement)
+    @foreach($announcements as $announcement)
 
-            <tr>
-                <td>{{ $announcement->title }}</td>
-                <td>{{ $announcement->announcement_date }}</td>
-                <td>{{ $announcement->content }}</td>
-            </tr>
+    <tr>
+        <td>{{ $announcement->title }}</td>
+        <td>{{ $announcement->announcement_date }}</td>
+        <td>{{ $announcement->content }}</td>
 
-            @endforeach
+        <td>
 
-        </table>
+            <a href="/announcements/{{ $announcement->id }}/edit" class="edit-btn">
+                ✏ Edit
+            </a>
+
+            <form action="/announcements/{{ $announcement->id }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+
+                <button class="delete-btn"
+                    onclick="return confirm('Delete this announcement?')">
+                    🗑 Delete
+                </button>
+            </form>
+
+        </td>
+
+    </tr>
+
+    @endforeach
+
+</table>
 
     </div>
 

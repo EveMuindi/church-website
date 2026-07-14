@@ -22,7 +22,6 @@ Route::get('/', function () {
 });
 
 Route::view('/about', 'about');
-
 Route::view('/ministries', 'ministries');
 
 /*
@@ -39,17 +38,21 @@ Route::post('/prayer', [PrayerRequestController::class, 'store']);
 
 /*
 |--------------------------------------------------------------------------
-| Announcements
+| Announcements (Admin Only)
 |--------------------------------------------------------------------------
 */
 
-Route::get('/announcements', [AnnouncementController::class, 'index']);
+Route::middleware(['auth', 'admin'])->group(function () {
 
-Route::get('/announcements/create', [AnnouncementController::class, 'create'])
-    ->middleware(['auth', 'admin']);
+    Route::get('/announcements', [AnnouncementController::class, 'index']);
+    Route::get('/announcements/create', [AnnouncementController::class, 'create']);
+    Route::post('/announcements', [AnnouncementController::class, 'store']);
 
-Route::post('/announcements', [AnnouncementController::class, 'store'])
-    ->middleware(['auth', 'admin']);
+    Route::get('/announcements/{id}/edit', [AnnouncementController::class, 'edit']);
+    Route::put('/announcements/{id}', [AnnouncementController::class, 'update']);
+    Route::delete('/announcements/{id}', [AnnouncementController::class, 'destroy']);
+
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -71,7 +74,13 @@ Route::get('/admin', function () {
 
     $prayerRequests = PrayerRequest::latest()->get();
 
-    return view('admin', compact('prayerRequests'));
+    $announcements = Announcement::latest()->take(5)->get();
+
+    return view('admin', [
+        'prayerRequests' => $prayerRequests,
+        'announcementCount' => Announcement::count(),
+        'announcements' => $announcements,
+    ]);
 
 })->middleware(['auth', 'admin']);
 
@@ -84,11 +93,8 @@ Route::get('/admin', function () {
 Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/prayer/{id}', [PrayerRequestController::class, 'show']);
-
     Route::get('/prayer/{id}/edit', [PrayerRequestController::class, 'edit']);
-
     Route::put('/prayer/{id}', [PrayerRequestController::class, 'update']);
-
     Route::delete('/prayer/{id}', [PrayerRequestController::class, 'destroy']);
 
 });
@@ -102,9 +108,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 Route::middleware('auth')->group(function () {
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 });
