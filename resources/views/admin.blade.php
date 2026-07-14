@@ -11,7 +11,7 @@
         <a href="#">🙏 Prayer Requests</a>
         <a href="/announcements">📢 Announcements</a>
         <a href="#">👥 Members</a>
-        <a href="#">📅 Events</a>
+        <a href="/events">📅 Events</a>
         <a href="#">🎤 Sermons</a>
         <a href="#">📸 Gallery</a>
         <a href="#">⚙ Settings</a>
@@ -53,8 +53,8 @@
             </div>
 
             <div class="service-card">
-                <h3>📅 Events</h3>
-                <h1>0</h1>
+            <h3>📅 Events</h3>
+            <h1>{{ $eventCount }}</h1>
             </div>
 
         </div>

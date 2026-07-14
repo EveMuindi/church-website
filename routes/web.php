@@ -6,6 +6,8 @@ use App\Models\PrayerRequest;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PrayerRequestController;
 use App\Http\Controllers\AnnouncementController;
+use App\Models\Event;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +58,24 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 /*
 |--------------------------------------------------------------------------
+| Events (Admin Only)
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('/events', [EventController::class, 'index']);
+    Route::get('/events/create', [EventController::class, 'create']);
+    Route::post('/events', [EventController::class, 'store']);
+
+    Route::get('/events/{id}/edit', [EventController::class, 'edit']);
+    Route::put('/events/{id}', [EventController::class, 'update']);
+    Route::delete('/events/{id}', [EventController::class, 'destroy']);
+
+});
+
+/*
+|--------------------------------------------------------------------------
 | Dashboard (Breeze)
 |--------------------------------------------------------------------------
 */
@@ -79,9 +99,10 @@ Route::get('/admin', function () {
     return view('admin', [
         'prayerRequests' => $prayerRequests,
         'announcementCount' => Announcement::count(),
+        'eventCount' => Event::count(),
         'announcements' => $announcements,
     ]);
-
+    
 })->middleware(['auth', 'admin']);
 
 /*
