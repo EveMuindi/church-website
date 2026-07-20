@@ -10,7 +10,7 @@
         <a href="/admin">📊 Dashboard</a>
         <a href="#">🙏 Prayer Requests</a>
         <a href="/announcements">📢 Announcements</a>
-        <a href="#">👥 Members</a>
+        <a href="/members">👥 Members</a>
         <a href="/events">📅 Events</a>
         <a href="#">🎤 Sermons</a>
         <a href="#">📸 Gallery</a>
@@ -58,6 +58,29 @@
             </div>
 
         </div>
+
+        <div class="admin-topbar" style="margin-top:30px;">
+    <h2>⚡ Quick Actions</h2>
+</div>
+
+<div class="services-container">
+
+    <a href="/announcements/create" class="service-card" style="text-decoration:none;">
+        <h3>📢 New Announcement</h3>
+        <p>Create a church announcement.</p>
+    </a>
+
+    <a href="/events/create" class="service-card" style="text-decoration:none;">
+        <h3>📅 New Event</h3>
+        <p>Add an upcoming church event.</p>
+    </a>
+
+    <a href="/prayer" class="service-card" style="text-decoration:none;">
+        <h3>🙏 Prayer Page</h3>
+        <p>Open the public prayer request page.</p>
+    </a>
+
+</div>
 
         <h2 style="margin-top:40px;">Prayer Requests</h2>
 

@@ -8,6 +8,8 @@ use App\Http\Controllers\PrayerRequestController;
 use App\Http\Controllers\AnnouncementController;
 use App\Models\Event;
 use App\Http\Controllers\EventController;
+use App\Models\Member;
+use App\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +73,24 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/events/{id}/edit', [EventController::class, 'edit']);
     Route::put('/events/{id}', [EventController::class, 'update']);
     Route::delete('/events/{id}', [EventController::class, 'destroy']);
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| Members (Admin Only)
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('/members', [MemberController::class, 'index']);
+    Route::get('/members/create', [MemberController::class, 'create']);
+    Route::post('/members', [MemberController::class, 'store']);
+
+    Route::get('/members/{id}/edit', [MemberController::class, 'edit']);
+    Route::put('/members/{id}', [MemberController::class, 'update']);
+    Route::delete('/members/{id}', [MemberController::class, 'destroy']);
 
 });
 
