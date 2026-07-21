@@ -130,4 +130,39 @@
 
 </section>
 
+<!-- LOCATION -->
+
+<section class="location">
+
+    <h2>📍 Find Us</h2>
+
+    <p>
+        We'd love to worship with you. Visit AIC SHILOH Church and experience God's presence.
+    </p>
+
+    <div class="map-container">
+
+        <iframe
+            src="https://www.google.com/maps?q=-1.3780583,36.9493817&z=17&output=embed"
+            width="100%"
+            height="550"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy">
+        </iframe>
+
+    </div>
+
+    <div style="margin-top:25px;">
+
+        <a href="https://www.google.com/maps?q=-1.3780583,36.9493817"
+           target="_blank"
+           class="btn">
+            📍 Get Directions
+        </a>
+
+    </div>
+
+</section>
+
 @endsection

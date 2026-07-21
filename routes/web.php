@@ -10,6 +10,12 @@ use App\Models\Event;
 use App\Http\Controllers\EventController;
 use App\Models\Member;
 use App\Http\Controllers\MemberController;
+use App\Models\Sermon;
+use App\Http\Controllers\SermonController;
+use App\Models\Gallery;
+use App\Http\Controllers\GalleryController;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,6 +102,42 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 /*
 |--------------------------------------------------------------------------
+| Sermons (Admin Only)
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('/sermons', [SermonController::class, 'index']);
+    Route::get('/sermons/create', [SermonController::class, 'create']);
+    Route::post('/sermons', [SermonController::class, 'store']);
+
+    Route::get('/sermons/{id}/edit', [SermonController::class, 'edit']);
+    Route::put('/sermons/{id}', [SermonController::class, 'update']);
+    Route::delete('/sermons/{id}', [SermonController::class, 'destroy']);
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| Gallery (Admin Only)
+|--------------------------------------------------------------------------
+*/
+
+Route::middleware(['auth', 'admin'])->group(function () {
+
+    Route::get('/gallery', [GalleryController::class, 'index']);
+    Route::get('/gallery/create', [GalleryController::class, 'create']);
+    Route::post('/gallery', [GalleryController::class, 'store']);
+
+    Route::get('/gallery/{id}/edit', [GalleryController::class, 'edit']);
+    Route::put('/gallery/{id}', [GalleryController::class, 'update']);
+    Route::delete('/gallery/{id}', [GalleryController::class, 'destroy']);
+
+});
+
+/*
+|--------------------------------------------------------------------------
 | Dashboard (Breeze)
 |--------------------------------------------------------------------------
 */
@@ -120,9 +162,10 @@ Route::get('/admin', function () {
         'prayerRequests' => $prayerRequests,
         'announcementCount' => Announcement::count(),
         'eventCount' => Event::count(),
+        'memberCount' => Member::count(),
         'announcements' => $announcements,
     ]);
-    
+
 })->middleware(['auth', 'admin']);
 
 /*

@@ -12,8 +12,8 @@
         <a href="/announcements">📢 Announcements</a>
         <a href="/members">👥 Members</a>
         <a href="/events">📅 Events</a>
-        <a href="#">🎤 Sermons</a>
-        <a href="#">📸 Gallery</a>
+        <a href="/sermons">🎤 Sermons</a>
+        <a href="/gallery">📸 Gallery</a>
         <a href="#">⚙ Settings</a>
 
         <hr style="margin:30px 0;">
@@ -40,24 +40,45 @@
 
         <h1>Admin Dashboard</h1>
 
-        <div class="services-container">
+        <div class="dashboard-cards">
 
-            <div class="service-card">
-                <h3>🙏 Prayer Requests</h3>
-                <h1>{{ $prayerRequests->count() }}</h1>
-            </div>
-
-            <div class="service-card">
-                <h3>📢 Announcements</h3>
-                <h1>{{ $announcementCount }}</h1>
-            </div>
-
-            <div class="service-card">
-            <h3>📅 Events</h3>
-            <h1>{{ $eventCount }}</h1>
-            </div>
-
+    <div class="dashboard-card prayers">
+        <div>
+            <h5>Prayer Requests</h5>
+            <h2>{{ $prayerRequests->count() }}</h2>
         </div>
+
+        <span>🙏</span>
+    </div>
+
+    <div class="dashboard-card announcements">
+        <div>
+            <h5>Announcements</h5>
+            <h2>{{ $announcementCount }}</h2>
+        </div>
+
+        <span>📢</span>
+    </div>
+
+    <div class="dashboard-card events">
+        <div>
+            <h5>Events</h5>
+            <h2>{{ $eventCount }}</h2>
+        </div>
+
+        <span>📅</span>
+    </div>
+
+    <div class="dashboard-card members">
+        <div>
+            <h5>Members</h5>
+            <h2>{{ $memberCount ?? 0 }}</h2>
+        </div>
+
+        <span>👥</span>
+    </div>
+
+</div>
 
         <div class="admin-topbar" style="margin-top:30px;">
     <h2>⚡ Quick Actions</h2>
@@ -73,6 +94,11 @@
     <a href="/events/create" class="service-card" style="text-decoration:none;">
         <h3>📅 New Event</h3>
         <p>Add an upcoming church event.</p>
+    </a>
+
+    <a href="/gallery" class="service-card" style="text-decoration:none;">
+        <h3>🖼 Gallery</h3>
+        <p>Manage church photos.</p>
     </a>
 
     <a href="/prayer" class="service-card" style="text-decoration:none;">

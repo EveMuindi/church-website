@@ -142,6 +142,63 @@ nav a.active{
     margin-bottom:15px;
 }
 
+/* Dashboard Cards */
+
+.dashboard-cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:25px;
+    margin:30px 0;
+}
+
+.dashboard-card{
+    padding:28px;
+    border-radius:18px;
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+    transition:.3s;
+    cursor:pointer;
+}
+
+.dashboard-card:hover{
+    transform:translateY(-8px);
+}
+
+.dashboard-card h5{
+    margin:0;
+    font-size:16px;
+    opacity:.9;
+}
+
+.dashboard-card h2{
+    margin-top:12px;
+    font-size:40px;
+    font-weight:bold;
+}
+
+.dashboard-card span{
+    font-size:52px;
+}
+
+.prayers{
+    background:linear-gradient(135deg,#0d6efd,#4e9fff);
+}
+
+.announcements{
+    background:linear-gradient(135deg,#ff9800,#ffc107);
+}
+
+.events{
+    background:linear-gradient(135deg,#28a745,#52d36d);
+}
+
+.members{
+    background:linear-gradient(135deg,#6f42c1,#9b6dff);
+}
+
 /* CHURCH SCHEDULE */
 
 .announcements{
@@ -416,4 +473,109 @@ table tr:hover{
 
 .edit-btn:hover{
     background:#e0a800;
+}
+/* =========================
+   MODERN GALLERY
+========================= */
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(8,1fr);
+    gap:12px;
+    margin-top:30px;
+}
+
+.gallery-item{
+    position:relative;
+    overflow:hidden;
+    border-radius:12px;
+    background:#eee;
+    aspect-ratio:1/1;
+}
+
+.gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.gallery-item:hover img{
+    transform:scale(1.08);
+}
+
+.delete-image{
+    position:absolute;
+    top:8px;
+    right:8px;
+    width:28px;
+    height:28px;
+    border:none;
+    border-radius:50%;
+    background:rgba(0,0,0,.65);
+    color:#fff;
+    cursor:pointer;
+    opacity:0;
+    transition:.25s;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+}
+
+.gallery-item:hover .delete-image{
+    opacity:1;
+}
+
+@media(max-width:1600px){
+    .gallery-grid{
+        grid-template-columns:repeat(6,1fr);
+    }
+}
+
+@media(max-width:1200px){
+    .gallery-grid{
+        grid-template-columns:repeat(4,1fr);
+    }
+}
+
+@media(max-width:768px){
+    .gallery-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+/* ==========================
+   LOCATION
+========================== */
+
+.location{
+    padding:80px 20px;
+    background:#f8f9fa;
+    text-align:center;
+}
+
+.location h2{
+    font-size:40px;
+    color:#0B5D1E;
+    margin-bottom:15px;
+}
+
+.location p{
+    font-size:18px;
+    color:#666;
+    margin-bottom:35px;
+}
+
+.map-container{
+    width:95%;
+    max-width:1300px;
+    margin:auto;
+    overflow:hidden;
+    border-radius:20px;
+    box-shadow:0 15px 40px rgba(0,0,0,.18);
+}
+
+.map-container iframe{
+    display:block;
 }
