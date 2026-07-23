@@ -81,4 +81,11 @@ class SermonController extends Controller
 
         return back();
     }
+
+    public function public()
+    {
+        $sermons = Sermon::latest()->get();
+
+        return view('sermons.public', compact('sermons'));
+    }
 }

@@ -16,6 +16,7 @@ use App\Models\Gallery;
 use App\Http\Controllers\GalleryController;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\SettingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,13 @@ Route::get('/', function () {
 
 Route::view('/about', 'about');
 Route::view('/ministries', 'ministries');
+Route::get('/events', function () {
+
+    $events = Event::latest()->get();
+
+    return view('events.public', compact('events'));
+
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -72,13 +80,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
 
-    Route::get('/events', [EventController::class, 'index']);
-    Route::get('/events/create', [EventController::class, 'create']);
-    Route::post('/events', [EventController::class, 'store']);
+    Route::get('/admin/events', [EventController::class, 'index']);
+    Route::get('/admin/events/create', [EventController::class, 'create']);
+    Route::post('/admin/events', [EventController::class, 'store']);
 
-    Route::get('/events/{id}/edit', [EventController::class, 'edit']);
-    Route::put('/events/{id}', [EventController::class, 'update']);
-    Route::delete('/events/{id}', [EventController::class, 'destroy']);
+    Route::get('/admin/events/{id}/edit', [EventController::class, 'edit']);
+    Route::put('/admin/events/{id}', [EventController::class, 'update']);
+    Route::delete('/admin/events/{id}', [EventController::class, 'destroy']);
 
 });
 
@@ -196,5 +204,22 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 });
+
+Route::get('/settings', [SettingController::class, 'edit'])
+    ->middleware(['auth', 'admin']);
+
+Route::post('/settings', [SettingController::class, 'update'])
+    ->middleware(['auth', 'admin']);
+
+Route::view('/giving', 'giving');
+
+// Public Sermons
+Route::get('/sermons', [SermonController::class, 'public']);
+
+// Public Contact Page
+Route::view('/contact', 'contact');
+
+Route::get('/sermons', [SermonController::class, 'public']);
+Route::view('/contact', 'contact');
 
 require __DIR__.'/auth.php';

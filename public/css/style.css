@@ -116,7 +116,9 @@ nav a.active{
 /* SERVICE TIMES */
 
 .services{
-    background:#f5f5f5;
+    .services{
+        background:linear-gradient(180deg,#ffffff,#f2f9ff);
+    }
     padding:60px;
     text-align:center;
 }
@@ -253,7 +255,9 @@ footer p{
 
 .features{
     padding:70px 20px;
-    background:#eef7ee;
+    .features{
+        background:linear-gradient(180deg,#f8fbff,#edf7ff);
+    }
     text-align:center;
 }
 
@@ -551,7 +555,9 @@ table tr:hover{
 
 .location{
     padding:80px 20px;
-    background:#f8f9fa;
+    .location{
+        background:linear-gradient(180deg,#ffffff,#eef7ff);
+    }
     text-align:center;
 }
 
@@ -579,3 +585,341 @@ table tr:hover{
 .map-container iframe{
     display:block;
 }
+/* HERO SLIDER */
+
+.hero{
+    position:relative;
+    overflow:hidden;
+}
+
+.slider{
+    position:relative;
+    width:100%;
+    height:500px;
+}
+
+.slider img{
+    position:absolute;
+    width:100%;
+    height:500px;
+    object-fit:cover;
+    opacity:0;
+    transition:opacity 1s ease-in-out;
+}
+
+.slider img.active{
+    opacity:1;
+}
+footer a{
+    color:gold;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+footer a:hover{
+    color:white;
+}
+.social-icons{
+    display:flex;
+    justify-content:center;
+    gap:25px;
+    margin:20px 0;
+}
+
+.social-icons a{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:white;
+    color:#0B5D1E;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:24px;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.social-icons a:hover{
+    background:gold;
+    transform:scale(1.1);
+}
+/* ===========================
+   SOCIAL MEDIA ICONS
+=========================== */
+
+.social-icons{
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    margin-top:15px;
+}
+
+.social-icons a{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    text-decoration:none;
+    font-size:22px;
+    transition:.3s;
+}
+
+.social-icons a:nth-child(1){
+    background:#1877F2;
+}
+
+.social-icons a:nth-child(2){
+    background:#FF0000;
+}
+
+.social-icons a:nth-child(3){
+    background:#000;
+}
+
+.social-icons a:hover{
+    transform:translateY(-6px) scale(1.1);
+    box-shadow:0 10px 20px rgba(0,0,0,.25);
+}
+/* ===========================
+   WHATSAPP FLOATING BUTTON
+=========================== */
+
+.whatsapp-float{
+    position:fixed;
+    width:65px;
+    height:65px;
+    bottom:25px;
+    right:25px;
+    background:#25D366;
+    color:#fff;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:34px;
+    text-decoration:none;
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+    z-index:9999;
+    transition:.3s;
+}
+
+.whatsapp-float:hover{
+    transform:scale(1.1);
+    background:#1ebe5d;
+    color:#fff;
+}
+/* ===========================
+   FINAL MOBILE FIXES
+=========================== */
+
+body{
+    background:linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #f4fbff 40%,
+        #eef7ff 70%,
+        #ffffff 100%
+    );
+}
+
+@media (max-width:768px){
+
+    nav{
+        display:flex;
+        flex-direction:column;
+        gap:15px;
+        padding:18px;
+    }
+
+    nav a{
+        margin:0;
+    }
+
+    .header-content{
+        flex-direction:column;
+    }
+
+    .logo{
+        width:80px;
+        height:80px;
+    }
+
+    .slider,
+    .slider img{
+        height:260px;
+    }
+
+    .hero-text{
+        width:88%;
+        top:50%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        padding:15px;
+    }
+
+    .hero-text h2{
+        font-size:32px;
+        line-height:1.2;
+    }
+
+    .hero-text p{
+        font-size:17px;
+    }
+
+    .btn{
+        font-size:15px;
+        padding:10px 18px;
+    }
+
+    .services-container,
+    .features-container{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .service-card,
+    .feature-card,
+    .announcement-card{
+        width:95%;
+    }
+
+    .announcement-card{
+        padding:20px;
+    }
+
+    .map-container iframe{
+        height:300px;
+    }
+
+    table{
+        display:block;
+        overflow-x:auto;
+    }
+
+    footer{
+        padding:25px;
+    }
+
+    .whatsapp-float{
+        width:55px;
+        height:55px;
+        font-size:28px;
+        right:15px;
+        bottom:15px;
+    }
+}
+/* ===========================
+   HAMBURGER MENU
+=========================== */
+
+.menu-toggle{
+    display:none;
+    color:white;
+    font-size:28px;
+    cursor:pointer;
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:15px;
+}
+
+.nav-links a{
+    white-space:nowrap;
+}
+
+@media (max-width:768px){
+
+    nav{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:15px 20px;
+        position:relative;
+    }
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .nav-links{
+        display:none;
+        position:absolute;
+        top:100%;
+        left:0;
+        width:100%;
+        background:#145A32;
+        flex-direction:column;
+        padding:20px 0;
+        gap:15px;
+        box-shadow:0 8px 20px rgba(0,0,0,.15);
+    }
+
+    .nav-links.active{
+        display:flex;
+    }
+
+    .nav-links a{
+        margin:0;
+    }
+
+    .nav-links form{
+        margin:0;
+    }
+}
+/* Hamburger Menu */
+
+.menu-toggle{
+    display:none;
+    color:white;
+    font-size:28px;
+    cursor:pointer;
+}
+
+.nav-links{
+    display:flex;
+    gap:20px;
+    align-items:center;
+}
+
+@media (max-width:768px){
+
+    .menu-toggle{
+        display:block;
+        padding:15px;
+    }
+
+    .nav-links{
+        display:none;
+        flex-direction:column;
+        width:100%;
+        background:#1b5e20;
+        padding:15px 0;
+    }
+
+    .nav-links.active{
+        display:flex;
+    }
+
+}
+/* Mobile Table Scroll */
+
+@media (max-width:768px){
+
+    .table-responsive{
+        width:100%;
+        overflow-x:auto;
+    }
+    
+    table{
+        min-width:700px;
+    }
+    
+    }

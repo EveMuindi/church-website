@@ -4,7 +4,15 @@
 
 <div class="hero">
 
-    <img src="/images/church1.jpg" alt="AIC SHILOH">
+    <div class="slider">
+
+        <img src="/images/slide1.jpg" class="active">
+        <img src="/images/slide2.jpg">
+        <img src="/images/slide3.jpg">
+        <img src="/images/slide4.jpg">
+        <img src="/images/slide5.jpg">
+
+    </div>
 
     <div class="hero-text">
         <h2>Welcome to AIC SHILOH</h2>
@@ -123,7 +131,7 @@
         <div class="feature-card">
             <h3>📅 Upcoming Events</h3>
             <p>Stay updated with church programs, conferences and fellowships.</p>
-            <a href="#" class="btn">View Events</a>
+            <a href="/events" class="btn">View Events</a>
         </div>
 
     </div>

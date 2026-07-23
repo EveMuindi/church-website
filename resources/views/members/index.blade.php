@@ -12,53 +12,63 @@
         </a>
     </div>
 
-    <table>
+    <div class="table-responsive">
 
-        <tr>
-            <th>Name</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Ministry</th>
-            <th>Actions</th>
-        </tr>
+        <table>
 
-        @forelse($members as $member)
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Ministry</th>
+                <th>Actions</th>
+            </tr>
 
-        <tr>
-            <td>{{ $member->name }}</td>
-            <td>{{ $member->phone }}</td>
-            <td>{{ $member->email }}</td>
-            <td>{{ $member->ministry }}</td>
+            @forelse($members as $member)
 
-            <td>
+            <tr>
 
-                <a href="/members/{{ $member->id }}/edit" class="edit-btn">
-                    ✏ Edit
-                </a>
+                <td>{{ $member->name }}</td>
+                <td>{{ $member->phone }}</td>
+                <td>{{ $member->email }}</td>
+                <td>{{ $member->ministry }}</td>
 
-                <form action="/members/{{ $member->id }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
+                <td>
 
-                    <button class="delete-btn"
-                        onclick="return confirm('Delete this member?')">
-                        🗑 Delete
-                    </button>
-                </form>
+                    <a href="/members/{{ $member->id }}/edit" class="edit-btn">
+                        ✏ Edit
+                    </a>
 
-            </td>
+                    <form action="/members/{{ $member->id }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
 
-        </tr>
+                        <button class="delete-btn"
+                            onclick="return confirm('Delete this member?')">
+                            🗑 Delete
+                        </button>
 
-        @empty
+                    </form>
 
-        <tr>
-            <td colspan="5">No members found.</td>
-        </tr>
+                </td>
 
-        @endforelse
+            </tr>
 
-    </table>
+            @empty
+
+            <tr>
+
+                <td colspan="5">
+                    No members found.
+                </td>
+
+            </tr>
+
+            @endforelse
+
+        </table>
+
+    </div>
 
 </div>
 

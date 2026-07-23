@@ -5,70 +5,95 @@
 <div class="admin-container">
 
     <div class="sidebar">
+
         <h2>AIC SHILOH</h2>
 
         <a href="/admin">📊 Dashboard</a>
         <a href="/announcements">📢 Announcements</a>
-        <a href="#">👥 Members</a>
-        <a href="#">📅 Events</a>
-        <a href="#">🎤 Sermons</a>
-        <a href="#">📸 Gallery</a>
-        <a href="#">⚙ Settings</a>
+        <a href="/members">👥 Members</a>
+        <a href="/events">📅 Events</a>
+        <a href="/sermons">🎤 Sermons</a>
+        <a href="/gallery">📸 Gallery</a>
+        <a href="/settings">⚙ Settings</a>
 
         <hr style="margin:30px 0;">
 
-        <a href="/">🚪 Logout</a>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" style="background:none;border:none;color:#ffcccc;cursor:pointer;">
+                🚪 Logout
+            </button>
+        </form>
+
     </div>
 
     <div class="main-content">
 
         <div class="admin-topbar">
+
             <h2>📢 Church Announcements</h2>
 
             <a href="/announcements/create" class="btn">
                 ➕ Add Announcement
             </a>
+
         </div>
 
-        <table>
+        <div class="table-responsive">
 
-    <tr>
-        <th>Title</th>
-        <th>Date</th>
-        <th>Content</th>
-        <th>Actions</th>
-    </tr>
+            <table>
 
-    @foreach($announcements as $announcement)
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Content</th>
+                    <th>Actions</th>
+                </tr>
 
-    <tr>
-        <td>{{ $announcement->title }}</td>
-        <td>{{ $announcement->announcement_date }}</td>
-        <td>{{ $announcement->content }}</td>
+                @forelse($announcements as $announcement)
 
-        <td>
+                <tr>
 
-            <a href="/announcements/{{ $announcement->id }}/edit" class="edit-btn">
-                ✏ Edit
-            </a>
+                    <td>{{ $announcement->title }}</td>
+                    <td>{{ $announcement->announcement_date }}</td>
+                    <td>{{ $announcement->content }}</td>
 
-            <form action="/announcements/{{ $announcement->id }}" method="POST" style="display:inline;">
-                @csrf
-                @method('DELETE')
+                    <td>
 
-                <button class="delete-btn"
-                    onclick="return confirm('Delete this announcement?')">
-                    🗑 Delete
-                </button>
-            </form>
+                        <a href="/announcements/{{ $announcement->id }}/edit" class="edit-btn">
+                            ✏ Edit
+                        </a>
 
-        </td>
+                        <form action="/announcements/{{ $announcement->id }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
 
-    </tr>
+                            <button class="delete-btn"
+                                onclick="return confirm('Delete this announcement?')">
+                                🗑 Delete
+                            </button>
 
-    @endforeach
+                        </form>
 
-</table>
+                    </td>
+
+                </tr>
+
+                @empty
+
+                <tr>
+
+                    <td colspan="4">
+                        No announcements available.
+                    </td>
+
+                </tr>
+
+                @endforelse
+
+            </table>
+
+        </div>
 
     </div>
 

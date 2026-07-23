@@ -26,61 +26,69 @@
         <div class="admin-topbar">
             <h2>📅 Church Events</h2>
 
-            <a href="/events/create" class="btn">
+            <a href="/admin/events/create" class="btn">
                 ➕ Add Event
             </a>
         </div>
 
-        <table>
+        <div class="table-responsive">
 
-            <tr>
-                <th>Title</th>
-                <th>Date</th>
-                <th>Location</th>
-                <th>Actions</th>
-            </tr>
+            <table>
 
-            @forelse($events as $event)
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Actions</th>
+                </tr>
 
-            <tr>
+                @forelse($events as $event)
 
-                <td>{{ $event->title }}</td>
+                <tr>
 
-                <td>{{ \Carbon\Carbon::parse($event->event_date)->format('d M Y') }}</td>
+                    <td>{{ $event->title }}</td>
 
-                <td>{{ $event->location }}</td>
+                    <td>{{ \Carbon\Carbon::parse($event->event_date)->format('d M Y') }}</td>
 
-                <td>
+                    <td>{{ $event->location }}</td>
 
-                    <a href="/events/{{ $event->id }}/edit" class="edit-btn">
-                        ✏ Edit
-                    </a>
+                    <td>
 
-                    <form action="/events/{{ $event->id }}" method="POST" style="display:inline;">
+                        <a href="/events/{{ $event->id }}/edit" class="edit-btn">
+                            ✏ Edit
+                        </a>
 
-                        @csrf
-                        @method('DELETE')
+                        <form action="/events/{{ $event->id }}" method="POST" style="display:inline;">
 
-                        <button class="delete-btn"
-                            onclick="return confirm('Delete this event?')">
-                            🗑 Delete
-                        </button>
+                            @csrf
+                            @method('DELETE')
 
-                    </form>
+                            <button class="delete-btn"
+                                onclick="return confirm('Delete this event?')">
+                                🗑 Delete
+                            </button>
 
-                </td>
+                        </form>
 
-            </tr>
+                    </td>
 
-            @empty
+                </tr>
 
-            <tr>
-                <td colspan="4">No events available.</td>
-            </tr>
+                @empty
 
-            @endforelse
+                <tr>
 
-        </table>
+                    <td colspan="4">
+                        No events available.
+                    </td>
+
+                </tr>
+
+                @endforelse
+
+            </table>
+
+        </div>
 
     </div>
 
