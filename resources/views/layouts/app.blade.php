@@ -3,7 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIC SHILOH</title>
+    <title>@yield('title', 'AIC SHILOH | Growing in Faith, Hope and Love')</title>
+
+<meta name="description" content="AIC SHILOH Church - Growing in Faith, Hope and Love. Join us for worship, prayer, sermons, events and fellowship.">
+
+<meta name="keywords" content="AIC SHILOH, Church, Syokimau Church, Katani Church, Christian Church Kenya, Sermons, Prayer Requests">
+
+<meta name="author" content="Tasha Muindi">
+
+<meta property="og:title" content="AIC SHILOH">
+
+<meta property="og:description" content="Growing in Faith, Hope and Love.">
+
+<meta property="og:image" content="{{ asset('images/logo.png') }}">
+
+<meta property="og:type" content="website">
+
+<meta property="og:url" content="{{ url()->current() }}">
+
+<link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+
+<link rel="manifest" href="{{ asset('manifest.json') }}">
+
+<link rel="canonical" href="{{ url()->current() }}">
+
+<meta name="theme-color" content="#0B5D1E">
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
@@ -170,5 +194,11 @@ if(menuToggle){
 }
 </script>
 
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log('Service Worker Registered'));
+}
+</script>
 </body>
 </html>
